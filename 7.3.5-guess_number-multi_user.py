@@ -95,7 +95,7 @@ async def process_positive_answer(message: Message):
     else:
         await message.answer(
             'While we are playing i can '
-            'react on numbers from 1 to 100'
+            'react on numbers from 1 to 100 '
             'and commands /cancel and /stat'
         )
 
@@ -129,10 +129,10 @@ async def process_numbers_answer(message: Message):
             )
         elif int(message.text) > users_dct[message.from_user.id]['secret_number']:
             users_dct[message.from_user.id]['attempts'] -= 1
-            await message.answer(f'The guessed number is less.\nAttempts left: {users_dct["attempts"]}')
+            await message.answer(f'The guessed number is less.\nAttempts left: {users_dct[message.from_user.id]["attempts"]}')
         elif int(message.text) < users_dct[message.from_user.id]['secret_number']:
             users_dct[message.from_user.id]['attempts'] -= 1
-            await message.answer(f'The guessed number is greater.\nAttempts left: {users_dct["attempts"]}')
+            await message.answer(f'The guessed number is greater.\nAttempts left: {users_dct[message.from_user.id]["attempts"]}')
 
         if users_dct[message.from_user.id]['attempts'] == 0:
             users_dct[message.from_user.id]['in_game'] = False
