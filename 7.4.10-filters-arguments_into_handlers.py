@@ -1,6 +1,6 @@
 # 7.4.10-filters-arguments_into_handlers
 
-from aiogram import Bot, Dispatcher
+from aiogram import Bot, Dispatcher, F
 from aiogram.filters import BaseFilter
 from aiogram.types import Message
 
@@ -30,7 +30,7 @@ class NumbersInMessage(BaseFilter):
 
 
 # Handler for updates starting 'find numbers'and have numbers
-@dp.message(F.text.lower().startswith('find numbers'), NumbersInMessage):
+@dp.message(F.text.lower().startswith('find numbers'), NumbersInMessage())
 # except Message get in handler list of numbers from FILTER
 async def process_if_numbers(message: Message, numbers: list[int]):
     await message.answer(text=f'Found: {", ".join(str(num) for num in numbers)}')
